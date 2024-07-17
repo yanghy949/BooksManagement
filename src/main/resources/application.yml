@@ -3,12 +3,18 @@ server:
   port: 8080
 
 spring:
-# ---------------------------------------------  数据库配置(默认使用mysql：8.0+) -----------------------------------#
+# ---------------------------------------------  数据库配置(mysql8.0或sqlite) -----------------------------------#
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/book_manager?characterEncoding=utf-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+    # mysql
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/book_manager?characterEncoding=utf-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: 123456
+    # sqlite
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:book_manager.db
     username: root
-    password: 215130532
+    password: 123456
 
 # ---------------------------------------------  配置 JPA ------------------------------------------------------- #
   jpa:
@@ -19,6 +25,14 @@ spring:
     show-sql: true
 # ---------------------------------------------  自动生成表结构 ------------------------------------------------- #
     generate-ddl: true
+    properties:
+      hibernate:
+
+# ---------------------------------------------  配置sql方言------------------------------------------------- #
+        #mysql
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+        #sqlite
+        dialect: org.hibernate.dialect.SQLiteDialect
   servlet:
     multipart:
       max-file-size: 2MB

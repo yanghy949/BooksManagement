@@ -70,12 +70,24 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- mysql驱动 -->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.26</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+        <!--        sqlite驱动-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
-            <scope>runtime</scope>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.41.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.gwenn</groupId>
+            <artifactId>sqlite-dialect</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+
         <!-- lom bok插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>

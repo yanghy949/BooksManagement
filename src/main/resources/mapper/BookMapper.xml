@@ -5,11 +5,11 @@
         <result property="publishTime" column="publish_time"/>
     </resultMap>
     <select id="findBookListByLike" parameterType="String" resultType="Book" resultMap="BaseResultMap">
-        select *
-        from book
-        <if test="_parameter!=null || _parameter!=''">
-            where name like concat('%', #{keyword}, '%')
-            or isbn like concat('%', #{keyword}, '%')
+        SELECT *
+        FROM book
+        <if test="_parameter != null and _parameter != ''">
+            WHERE name LIKE CONCAT('%', _parameter, '%')
+            OR isbn LIKE CONCAT('%', _parameter, '%')
         </if>
     </select>
     <update id="updateBook" parameterType="Book">
