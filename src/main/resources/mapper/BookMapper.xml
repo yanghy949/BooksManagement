@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.manager.dao.BookMapper">
+    <resultMap id="BaseResultMap" type="Book">
+        <result property="publishTime" column="publish_time"/>
+    </resultMap>
+    <select id="findBookListByLike" parameterType="String" resultType="Book" resultMap="BaseResultMap">
+        select *
+        from book
+        <if test="_parameter!=null || _parameter!=''">
+            where name like concat('%', #{keyword}, '%')
+            or isbn like concat('%', #{keyword}, '%')
+        </if>
+    </select>
+    <update id="updateBook" parameterType="Book">
+        update book set
+            name=#{name},
+            author=#{author},
+            publish=#{publish},
+            publish_time=#{publishTime},
+            isbn=#{isbn},
+            type=#{type},
+            price=#{price},
+            size=#{size},
+            pages=#{pages},
+            translate=#{translate},
+            pic=#{pic}
+        where id = #{id}
+    </update>
+    <insert id="addBook" parameterType="Book">
+        insert into book(name, author, publish, publish_time, isbn, type, price, size, pages, translate, pic)
+        values (#{name}, #{author}, #{publish}, #{publishTime}, #{isbn}, #{type}, #{price}, #{size}, #{pages}, #{translate}, #{pic})
+    </insert>
+    <delete id="deleteBook" parameterType="Integer">
+        delete from book where id = #{id}
+    </delete>
+
+</mapper>
